@@ -1,0 +1,3 @@
+- install rlwrap `sudo apt install rlwrap`
+- install dart https://dart.dev/get-dart#install
+- clojuredart is installed with a `deps.edn` dep declaration
