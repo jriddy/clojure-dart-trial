@@ -1,0 +1,42 @@
+(ns acme.main
+  (:require ["package:flutter/material.dart" :as m]
+            [cljd.flutter :as f]))
+
+(def app-title  "Flutter layout demo")
+
+(defn title-section []
+  (f/widget
+   (m/Container
+    .padding (m/EdgeInsets.all 32))
+   m/Row
+   .children
+   [(f/widget
+     m/Expanded
+     (m/Column
+      .crossAxisAlignment m/CrossAxisAlignment.start)
+     .children
+     [(m/Container
+       .padding (m/EdgeInsets.only .bottom 8)
+       .child (m/Text "Oeschinen Lake Campground"
+                      .style (m/TextStyle .fontWeight m/FontWeight.bold)))
+      (m/Text "Kanderseig, Switzerland"
+              .style (m/TextStyle .color m/Colors.grey))])
+    (m/Icon m/Icons.star .color (m/Colors.red 100))
+    (m/Text "41")]
+   ))
+
+#_ (defn build-button-column
+  [color icon label]
+  (m/Column
+   .mainAxisSize))
+
+(defn main []
+  (f/run
+   (m/MaterialApp
+    .title app-title)
+   .home
+   (m/Scaffold
+    .appBar (m/AppBar .title (m/Text app-title)))
+   .body
+   m/Center
+   (title-section)))
