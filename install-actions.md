@@ -1,3 +1,7 @@
 - install rlwrap `sudo apt install rlwrap`
 - install dart https://dart.dev/get-dart#install
 - clojuredart is installed with a `deps.edn` dep declaration
+- install flutter https://docs.flutter.dev/get-started/install/linux
+  - `sudo apt install libglu1-mesa`
+  - extract flutter, add to path
+  - `sudo apt install -y libgtk-3-dev ninja build`
