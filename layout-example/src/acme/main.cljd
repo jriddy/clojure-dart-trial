@@ -25,10 +25,19 @@
     (m/Text "41")]
    ))
 
-#_ (defn build-button-column
+(defn- build-button-column
   [color icon label]
-  (m/Column
-   .mainAxisSize))
+  (m/Column :mainAxisSize (.min m/MainAxisSize)
+            :mainAxisAlignment (.center m/MainAxisAlignment)
+            :children
+            [(m/Icon icon :color color)
+             (m/Container :margin ^:const (.only m/EdgeInsets :top 8)
+                          :child (m/Text label
+                                         :style
+                                         (m/TextStyle :fontSize 12
+                                                      :fontWeight
+                                                      (.w400 m/FontWeight)
+                                                      :color color)))]))
 
 (defn main []
   (f/run
@@ -38,5 +47,18 @@
    (m/Scaffold
     .appBar (m/AppBar .title (m/Text app-title)))
    .body
-   m/Center
-   (title-section)))
+   m/Column
+   .children
+   [(title-section)
+    (f/widget
+     :context ctx
+     (m/Row
+      .mainAxisAlignment m/MainAxisAlignment.spaceEvenly
+      .children
+      (let [color (-> m/Theme (.of ctx) .primaryColor)]
+        (map (partial build-button-column color)
+             [m/Icons.call m/Icons.near_me, m/Icons.share]
+             ["CALL" "ROUTE" "SHARE"]))))
+    ^:const (m/Padding
+             .padding (m/EdgeInsets.all 32)
+             .child (m/Text "some text" .softWrap true))]))
